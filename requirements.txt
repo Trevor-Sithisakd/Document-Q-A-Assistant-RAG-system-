@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+streamlit
+pydantic
+python-dotenv
+pypdf
+chromadb
+openai or similar llms
+langchain
+tiktoken
+python-multipart
+pytest
+httpx
