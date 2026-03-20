@@ -5,7 +5,7 @@ pydantic
 python-dotenv
 pypdf
 chromadb
-openai or similar llms
+openai
 langchain
 tiktoken
 python-multipart
