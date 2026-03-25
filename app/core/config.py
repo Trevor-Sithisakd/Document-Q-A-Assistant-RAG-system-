@@ -10,7 +10,7 @@ class Settings(BaseModel):
     openrouter_api_key: str = os.getenv("OPENROUTER_API_KEY", "")
     openrouter_base_url: str = os.getenv("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1")
     embedding_model: str = os.getenv("EMBEDDING_MODEL", "")
-    chat_model: str = os.getenv("CHAT_MODEL", "openrouter/auto")
+    chat_model: str = os.getenv("CHAT_MODEL", "")
     openrouter_site_url: str = os.getenv("OPENROUTER_SITE_URL", "http://localhost:8501")
     openrouter_app_title: str = os.getenv("OPENROUTER_APP_TITLE", "Document Q&A Assistant")
     chunk_size: int = int(os.getenv("CHUNK_SIZE", 800))
