@@ -14,14 +14,16 @@ class IngestService:
         self.store = ChromaStore()
 
     def ingest_document(self, file_path: str) -> dict:
+        source = os.path.basename(file_path)
+        if self.store.source_exists(source):
+            raise ValueError(f"Document '{source}' has already been ingested.")
+
         pages = load_pdf(file_path)
 
         cleaned_pages = [
             {"page": p["page"], "text": clean_text(p["text"])}
             for p in pages
         ]
-
-        source = os.path.basename(file_path)
 
         chunks = chunk_pages(
             cleaned_pages,

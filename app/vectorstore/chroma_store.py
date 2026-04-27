@@ -21,6 +21,10 @@ class ChromaStore:
             ]
         )
 
+    def source_exists(self, source: str) -> bool:
+        results = self.collection.get(where={"source": source}, limit=1)
+        return len(results["ids"]) > 0
+
     def search(self, query_embedding: list[float], top_k: int = 4) -> dict:
         return self.collection.query(
             query_embeddings=[query_embedding],
