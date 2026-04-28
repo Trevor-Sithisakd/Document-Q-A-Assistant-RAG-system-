@@ -1,3 +1,5 @@
+import tiktoken
+
 def chunk_text(text: str, chunk_size: int, overlap: int) -> list[str]:
     chunks = []
     start = 0

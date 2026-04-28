@@ -31,6 +31,8 @@ class IngestService:
             chunk_size=settings.chunk_size,
             overlap=settings.chunk_overlap
         )
+        
+        chunks = [c for c in chunks if c["text"].strip()] # blank page protection
 
         embeddings = self.embedder.embed_texts([c["text"] for c in chunks])
         self.store.add_chunks(chunks, embeddings)
