@@ -25,6 +25,24 @@ class ChromaStore:
         results = self.collection.get(where={"source": source}, limit=1)
         return len(results["ids"]) > 0
 
+    def delete_source(self, source: str) -> int:
+        results = self.collection.get(where={"source": source})
+        ids = results["ids"]
+        if ids:
+            self.collection.delete(ids=ids)
+        return len(ids)
+
+    def clear_all(self) -> int:
+        results = self.collection.get()
+        ids = results["ids"]
+        if ids:
+            self.collection.delete(ids=ids)
+        return len(ids)
+
+    def list_sources(self) -> list[str]:
+        results = self.collection.get()
+        return sorted({m["source"] for m in results["metadatas"] if m.get("source")})
+
     def search(self, query_embedding: list[float], top_k: int = 4) -> dict:
         return self.collection.query(
             query_embeddings=[query_embedding],

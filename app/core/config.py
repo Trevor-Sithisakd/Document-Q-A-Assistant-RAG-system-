@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
+load_dotenv(override=True)
 
 
 class Settings(BaseModel):
