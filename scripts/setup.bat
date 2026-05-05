@@ -28,7 +28,13 @@ REM Create data directories
 if not exist "data\raw" mkdir data\raw
 if not exist "data\vectordb" mkdir data\vectordb
 
-echo [INFO] Setup complete. Starting Streamlit...
+echo [INFO] Starting FastAPI backend on http://localhost:8000 ...
+start "FastAPI Backend" cmd /k "cd /d %CD% && .venv\Scripts\activate && uvicorn app.api.main:app --reload --port 8000"
+
+echo [INFO] Waiting for backend to start...
+timeout /t 3 /nobreak >nul
+
+echo [INFO] Starting Streamlit frontend on http://localhost:8501 ...
 echo [INFO] Open http://localhost:8501 in your browser.
 echo.
 
